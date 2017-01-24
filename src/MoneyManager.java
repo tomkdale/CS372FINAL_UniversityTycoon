@@ -11,7 +11,7 @@ public class MoneyManager {
 	private int population =0;
 	private Timer loanTimer;
 /**
- * initializes balance and creates new timer to subtract loan interest once a year
+ * initializes balance and creates new timer to subtract loan interest and add student tuition
  * @param bal is balance user starts game with
  */
 	MoneyManager(double bal){
@@ -19,9 +19,10 @@ public class MoneyManager {
 		loanTimer = new Timer();
 		loanTimer.scheduleAtFixedRate(new TimerTask() {
 			public void run(){
-				balance += (double)population * 100;
+				balance += (double)population * 200;
+				balance -= loan * 0.01;
 			}
-			},0,1200000);
+			},0,10000);
 	}
 /**
  * buy loan increases balance and loan by 10000 as long as loans dont exceed 100000

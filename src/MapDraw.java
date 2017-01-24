@@ -305,11 +305,27 @@ public class MapDraw extends JComponent implements MouseMotionListener, MouseLis
 		if(rand.nextInt(300) < odds){//new students arrive more frequently when capacity is far from reached
 			population++;
 			if(population % 4 == 1)//one in four students are represented by student images
-				visuals.add(new Person(rand.nextInt(900)+200,900));
+				visuals.add(new Person(rand.nextInt(400)+200,900,this));
 			return;
 		}
 	}
-
+/**
+ * returns direction for people to move in if they reach the border of screen	
+ * @param x person's x coordinates
+ * @param y person's y coordinates
+ * @return NE, NW, SW,SE or null depending on person location in map
+ */
+	public String redirectPeople(int x, int y){
+		if(x <= 0)
+			return "SE";//move SE
+		if(x >= this.getWidth())
+			return "NW";//move NW
+		if(y <= 0)
+			return "SW";//move SW
+		if(y >= this.getHeight())
+			return "NE";//move NE
+		return null;//if not close to edges
+	}
 	public void mouseDragged(MouseEvent e) {}//useless stubs for mouse listeners
 	public void mousePressed(MouseEvent e) {}
 	public void mouseEntered(MouseEvent e) {}
